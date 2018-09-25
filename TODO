@@ -1,0 +1,8 @@
+TODO:
+-Fix dimension swap explosion
+-Fix dimension swap camera depth
+-Decrease asteroids for level 2
+-Create mine logic & instantiation
+-Create bullet logic & instantiation
+-Create enemy ship logic & instantiation
+-Think about a Boss
