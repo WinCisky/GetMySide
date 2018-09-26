@@ -281,7 +281,7 @@ public class SwitchSide : MonoBehaviour
         //esplosione ad 1 dimensione (quella attiva)
         Vector3 explosion_pos = transform.position;
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 25);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, Mathf.Infinity);
         foreach (Collider item in colliders)
         {
             Rigidbody rb = item.GetComponent<Rigidbody>();
