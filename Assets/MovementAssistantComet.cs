@@ -5,6 +5,8 @@ using Unity.Entities;
 
 public class MovementAssistantComet : MonoBehaviour
 {
+    public bool toDestroy;
+    public bool destroyable;
     public Vector3 rotating_speed;
     public Rigidbody rb;
     public float movement_speed;
@@ -33,17 +35,27 @@ public class MovementSystemComet : ComponentSystem
                 e.movement.rotating_speed.y,
                 e.movement.rotating_speed.z);
             //riposizionamento
+
             if (e.transform.position.y < -10 || Vector3.Distance(e.transform.position, target) > 100)
             {
-                e.transform.position = new Vector3(
-                    target.x + Random.Range(-30, +30),
-                    Random.Range(40, 90),
-                    target.z + Random.Range(-30, +30));
-                //cancello le forze precedenti e reimposto la forza iniziale
-                e.movement.rb.velocity = Vector3.zero;
-                e.movement.rb.angularVelocity = Vector3.zero;
-                e.movement.transform.rotation = Quaternion.identity;
-                e.movement.rb.AddForce(-e.transform.up * e.movement.movement_speed, ForceMode.Impulse);
+                //lóggetto va distrutto?
+                if (!e.movement.toDestroy)
+                {
+                    e.transform.position = new Vector3(
+                        target.x + Random.Range(-30, +30),
+                        Random.Range(40, 90),
+                        target.z + Random.Range(-30, +30));
+                    //cancello le forze precedenti e reimposto la forza iniziale
+                    e.movement.rb.velocity = Vector3.zero;
+                    e.movement.rb.angularVelocity = Vector3.zero;
+                    e.movement.transform.rotation = Quaternion.identity;
+                    e.movement.rb.AddForce(-e.transform.up * e.movement.movement_speed, ForceMode.Impulse);
+                }
+                else
+                {
+                    //lóggetto puo'essere dstrutto
+                    e.movement.destroyable = true;
+                }
             }
         }
     }

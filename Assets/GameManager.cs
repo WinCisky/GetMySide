@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
         mainMenu, // menu principale
         inGameUI, // interfaccia di gioco
         deathMenu, // menu sconfitta
+        pauseMenu, // menu pausa
         endMenu; // menu fine gioco
     public TextMeshProUGUI
         inGameInfo; // informazione per l'utente
@@ -122,6 +123,7 @@ public class GameManager : MonoBehaviour {
                     SpawnStuff(0, 10);
                     yield return new WaitForSeconds(15);
                 }
+                DeleteStuff(0, 30);
                 break;
             case 2:
                 //TODO
@@ -176,6 +178,50 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private void DeleteStuff(int index, int percent)
+    {
+        switch (index)
+        {
+            case 0:
+                for (int i = 0; i < asteroids.Count; i++)
+                {
+                    if (Random.Range(0, 100) < percent) // cancello una percentuale degli oggetti
+                        asteroids[i].GetComponent<MovementAssistantComet>().toDestroy = true;
+                }
+                StartCoroutine(GarbageDeleter(0, asteroids));
+                break;
+            default:
+                break;
+        }
+    }
+
+    //cancella gli oggetti usciti di scena
+    IEnumerator GarbageDeleter(int index, List<GameObject> list)
+    {
+        yield return new WaitForSeconds(10);
+        switch (index)
+        {
+            case 0:
+                //1 min, cancello ogni 15 s
+                for (int i = 0; i < 4; i++)
+                {
+                    foreach (var item in list)
+                    {
+                        if (item.GetComponent<MovementAssistantComet>().destroyable)
+                        {
+                            list.Remove(item);
+                            Destroy(item);
+                        }
+                    }
+                    yield return new WaitForSeconds(15);
+                }
+                break;
+            default:
+                break;
+        }
+        yield return null;
+    }
+
     public void timeStart()
     {
         levelAdvancment = StartCoroutine(updateProgressBar());
@@ -218,9 +264,7 @@ public class GameManager : MonoBehaviour {
         switch (level_to_start)
         {
             case 2:
-                //rimuovo parzialmente le comete
-                for (int i = 10; i < asteroids.Count; i++)
-                    Destroy(asteroids[i]);
+                
                 break;
             case 3:
                 break;
@@ -281,6 +325,20 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 1;
         input_movement_manager.can_move = true;
         StartCoroutine(StartLvl());
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+        inGameUI.gameObject.SetActive(false);
+        pauseMenu.gameObject.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        pauseMenu.gameObject.SetActive(false);
+        inGameUI.gameObject.SetActive(true);
     }
 
     public void MainMenu()
