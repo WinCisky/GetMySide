@@ -35,7 +35,6 @@ public class MovementSystemComet : ComponentSystem
                 e.movement.rotating_speed.y,
                 e.movement.rotating_speed.z);
             //riposizionamento
-
             if (e.transform.position.y < -10 || Vector3.Distance(e.transform.position, target) > 100)
             {
                 //lóggetto va distrutto?
@@ -53,7 +52,7 @@ public class MovementSystemComet : ComponentSystem
                 }
                 else
                 {
-                    //lóggetto puo'essere dstrutto
+                    //l'oggetto puo' essere dstrutto
                     e.movement.destroyable = true;
                 }
             }

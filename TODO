@@ -1,6 +1,11 @@
-TODO:
--Decrease asteroids for level 2
--Create mine logic & instantiation
--Create bullet logic & instantiation
--Create enemy ship logic & instantiation
+TO DO:
+-Create mine logic & instantiation -> distortion shader, shake
+-Create black holes -> shader
+-Create bullet logic & instantiation -> particle system for collision, logic, movement, size, force
+-Create enemy ship logic & instantiation -> camera move up/down (script)
+-Hide pause button option -> settings ui: volume (music), movement speed
+-Shop ui -> start stage (wrap animation), weapon, skin
 -Think about a Boss
+-Implement the colour system
+TO TEST:
+-Change input for dimension switch -> swipe right to change

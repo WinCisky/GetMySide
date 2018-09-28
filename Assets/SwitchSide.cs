@@ -130,7 +130,7 @@ public class SwitchSide : MonoBehaviour
 
         if (can_move)
         {
-
+            //INPUT PC
             if (Input.GetKeyDown(KeyCode.Space))
                 if (Time.time - dim_swap_cd > 10)
                 {
@@ -143,12 +143,14 @@ public class SwitchSide : MonoBehaviour
             if (Input.GetKey(KeyCode.S))
                 if (can_go_right)
                     transform.Translate(direction[(i * 2 + 1) % direction.Length] * speed * Time.deltaTime);
-
+            //INPUT PHONE
             //interazione dell'utente
             if (Input.touchCount > 0)
             {
+                Vector2 start_pos = Vector3.zero;
                 if (Input.GetTouch(0).phase == TouchPhase.Began)
                 {
+                    /*
                     //due tocchi in poco tempo e vicini
                     if (Input.GetTouch(0).tapCount == 2 && Vector2.Distance(last_tap_pos, Input.GetTouch(0).position) < 20)
                         if (Time.time - dim_swap_cd > 10)
@@ -157,6 +159,21 @@ public class SwitchSide : MonoBehaviour
                             dim_swap_cd = Time.time;
                         }
                     last_tap_pos = Input.GetTouch(0).position;
+                    */
+                    //punto in cui incomincio a toccare lo schermo
+                    start_pos = Input.GetTouch(0).position;
+                }
+                else if(Input.GetTouch(0).phase == TouchPhase.Ended)
+                {
+                    if((Input.GetTouch(0).position-start_pos).magnitude > 10)
+                    {
+                        //c'e' stato uno swipe
+                        if (Time.time - dim_swap_cd > 10) // posso ruotare
+                        {
+                            StartCoroutine(Rotate());
+                            dim_swap_cd = Time.time;
+                        }
+                    }
                 }
                 //movimento dell'utente
                 if (Input.GetTouch(0).position.x > (Screen.width / 2))
