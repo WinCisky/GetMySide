@@ -1,5 +1,7 @@
+TO FIX:
+-Mine explosion shader screen orintation & explosion timing
 TO DO:
--Create mine logic & instantiation -> distortion shader, shake
+-Add mine explosion logic -> shake
 -Create black holes -> shader
 -Create bullet logic & instantiation -> particle system for collision, logic, movement, size, force
 -Create enemy ship logic & instantiation -> camera move up/down (script)

@@ -8,11 +8,10 @@ public class MovementAssistantMine : MonoBehaviour
     public float margin_of_explosion;
     public Vector3 rotating_speed;
     public Rigidbody rb;
-    /*
     public bool toDestroy;
     public bool destroyable;
     public float movement_speed;
-    */
+    public GameObject explosion;
 }
 
 //Hybrid ECS
@@ -22,13 +21,12 @@ public class MovementSystemMine : ComponentSystem
     {
         public MovementAssistantMine movement;
         public Transform transform;
-        public ParticleSystem explosionParticles;
     }
 
     protected override void OnUpdate()
     {
         float fixedDeltaTime = Time.deltaTime;
-        float point_of_explosion = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height / 2, 0)).y;
+        float point_of_explosion = GameManager.GM.mainCamera.ScreenToWorldPoint(new Vector3(0, Screen.height / 2, 0)).y;
         //modifica parametri per le singole entita'
         foreach (var e in GetEntities<ComponentsComet>())
         {
@@ -37,19 +35,34 @@ public class MovementSystemMine : ComponentSystem
                 e.movement.rotating_speed.x,
                 e.movement.rotating_speed.y,
                 e.movement.rotating_speed.z);
-
-            if (e.transform.position.y < point_of_explosion + e.movement.margin_of_explosion)
+            if (e.transform.position.y < (point_of_explosion + e.movement.margin_of_explosion))
             {
                 //esplodo
                 //muovo gli oggetti vicini
-                Collider[] colliders = Physics.OverlapSphere(e.transform.position, Mathf.Infinity);
+                //Collider[] colliders = Physics.OverlapSphere(e.transform.position, Mathf.Infinity);
                 //mostro il particle system
                 //resetto la posizione
                 //cancello le forze
                 //resetto la rotaione
                 //aggiungo le forze
 
+                //esplosione
+                //Debug.Log(e.movement.explosion.GetComponent<Renderer>().material.GetFloat("Vector1_17CCCFF2"));
+                //e.movement.explosion.GetComponent<Renderer>().material.SetFloat("Vector1_17CCCFF2", Time.time);
+                e.movement.explosion.transform.position = e.transform.position;
+                e.transform.position = new Vector3(Random.Range(-45, 45), 50, Random.Range(-45, 45));
+            }
+            else
+            {
+                e.transform.position += new Vector3(0, -fixedDeltaTime * e.movement.movement_speed, 0);
             }
         }
+    }
+
+    IEnumerator WaitThenReset(ComponentsComet e)
+    {
+        yield return new WaitForSeconds(10);
+        Debug.Log("pollo");
+        
     }
 }

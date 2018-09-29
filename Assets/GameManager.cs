@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour {
     public int level_to_start;
     //cinemachine front camera component
     public GameObject introCamera, firstCamera;
+    //camera principale
+    public Camera mainCamera;
 
     //oggetti per le pool
     //father e' per tenere gli oggetti ordinati
@@ -72,7 +74,7 @@ public class GameManager : MonoBehaviour {
         shieldCooldown = Mathf.Infinity;
 
         //just for testing TO REMOVE
-        PlayerPrefs.SetInt("level", 1);
+        PlayerPrefs.SetInt("level", 2);
 
         //imposto il livello in base a quello raggiunto
         level_to_start = PlayerPrefs.GetInt("level", 1);
@@ -126,6 +128,16 @@ public class GameManager : MonoBehaviour {
                 DeleteStuff(0, 30);
                 break;
             case 2:
+                if (asteroids.Count == 0)
+                    SpawnStuff(0, 120);
+                level_progress_starter.SetActive(true);
+                SpawnStuff(1, 30);
+                for (int i = 0; i < 8; i++) // 2 mins
+                {
+                    SpawnStuff(0, 10);
+                    yield return new WaitForSeconds(15);
+                }
+                //DeleteStuff(0, 30);
                 //TODO
                 break;
             case 3:
@@ -171,6 +183,36 @@ public class GameManager : MonoBehaviour {
                     go.transform.localScale = new Vector3(
                         scale, scale, scale);
                     asteroids.Add(go);
+                }
+                break;
+            case 1:
+                for (int i = 0; i < amount; i++)
+                {
+                    //creo l'oggetto
+                    GameObject go = Instantiate(mine);
+                    //imposto il padre
+                    go.transform.parent = mine_father.transform;
+                    float scale = Random.Range(3, 5);
+                    //impostare il colore
+                    //TODO
+                    //imposto la forma
+                    //int random_mesh = Random.Range(0, asteroids_meshes.Length);
+                    //go.GetComponent<MeshFilter>().mesh = asteroids_meshes[random_mesh];
+                    //go.GetComponent<MeshCollider>().sharedMesh = asteroids_meshes[random_mesh];
+                    //imposto i parametri per il controllore del movimento
+                    go.GetComponent<MovementAssistantMine>().movement_speed = Mathf.Lerp(5, 3, scale);
+                    go.GetComponent<MovementAssistantMine>().rotating_speed = new Vector3(
+                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
+                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
+                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3));
+                    go.GetComponent<MovementAssistantMine>().rb = go.GetComponent<Rigidbody>();
+                    go.GetComponent<MovementAssistantMine>().margin_of_explosion = Random.Range(0, 5);
+                    //imposto la posizione inziale in modo che il controllo passi immediatamente al controllore
+                    go.transform.position = new Vector3(0, -50, 0);
+                    //imposto la grandezza
+                    go.transform.localScale = new Vector3(
+                        2, 2, 2);
+                    mines.Add(go);
                 }
                 break;
             default:
