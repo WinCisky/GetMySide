@@ -49,11 +49,19 @@ public class MovementSystemMine : ComponentSystem
                 //esplosione
                 //Debug.Log(e.movement.explosion.GetComponent<Renderer>().material.GetFloat("Vector1_17CCCFF2"));
                 //e.movement.explosion.GetComponent<Renderer>().material.SetFloat("Vector1_17CCCFF2", Time.time);
+
+                //attivo l'oggetto
+                e.movement.explosion.SetActive(true);
+                //attivo l'esplosione
+                e.movement.explosion.GetComponent<ShowExplosion>().StartExplosion();
+                //reimposto la posizione dell'esplosione
                 e.movement.explosion.transform.position = e.transform.position;
+                //tolgo la mina
                 e.transform.position = new Vector3(Random.Range(-45, 45), 50, Random.Range(-45, 45));
             }
             else
             {
+                //muovo la mina
                 e.transform.position += new Vector3(0, -fixedDeltaTime * e.movement.movement_speed, 0);
             }
         }

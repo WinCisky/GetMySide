@@ -24,7 +24,7 @@ public class MovementSystemComet : ComponentSystem
     protected override void OnUpdate()
     {
         //parametri identici per tutte le entita'
-        Vector3 target = GameManager.GM.player.transform.position;
+        //Vector3 target = GameManager.GM.player.transform.position;
         float fixedDeltaTime = Time.deltaTime;
         //modifica parametri per le singole entita'
         foreach (var e in GetEntities<ComponentsComet>())
@@ -34,16 +34,25 @@ public class MovementSystemComet : ComponentSystem
                 e.movement.rotating_speed.x,
                 e.movement.rotating_speed.y,
                 e.movement.rotating_speed.z);
+            bool out_of_delimiter = false;
+            if (e.transform.position.x > 45)
+                out_of_delimiter = true;
+            if (e.transform.position.x < -45)
+                out_of_delimiter = true;
+            if (e.transform.position.z > 45)
+                out_of_delimiter = true;
+            if (e.transform.position.z < -45)
+                out_of_delimiter = true;
             //riposizionamento
-            if (e.transform.position.y < -10 || Vector3.Distance(e.transform.position, target) > 100)
+            if (e.transform.position.y < -10 || out_of_delimiter)
             {
                 //lóggetto va distrutto?
                 if (!e.movement.toDestroy)
                 {
                     e.transform.position = new Vector3(
-                        target.x + Random.Range(-30, +30),
+                        Random.Range(-30, +30),
                         Random.Range(40, 90),
-                        target.z + Random.Range(-30, +30));
+                        Random.Range(-30, +30));
                     //cancello le forze precedenti e reimposto la forza iniziale
                     e.movement.rb.velocity = Vector3.zero;
                     e.movement.rb.angularVelocity = Vector3.zero;

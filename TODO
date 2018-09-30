@@ -1,5 +1,5 @@
 TO FIX:
--Mine explosion shader screen orintation & explosion timing
+-Instantiation of multiple mines
 TO DO:
 -Add mine explosion logic -> shake
 -Create black holes -> shader
@@ -11,3 +11,4 @@ TO DO:
 -Implement the colour system
 TO TEST:
 -Change input for dimension switch -> swipe right to change
+-Mine explosion shader screen orintation & explosion timing

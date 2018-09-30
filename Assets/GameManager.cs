@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour {
         asteroid_father, //level 1
         mine, //level 2
         mine_father, //level 2
+        explosion_effect, //level 2 support
+        explosione_effect_father,//level 2 support
         shooting_ship, //level 3
         shooting_ship_father, //level 3
         enemy_ship, //level 4
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour {
     private List<GameObject> 
         asteroids, //level 1
         mines, //level 2
+        explosiones_father, //level 2 support
         shooting_ships, //level 3
         enemy_ships; //level 4
 

@@ -127,6 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa78e4a9425197418edb0f5ab032d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toDestroy: 0
+  destroyable: 0
   rotating_speed: {x: 0, y: 0, z: 0}
   rb: {fileID: 0}
   movement_speed: 0
