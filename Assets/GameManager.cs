@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour {
     private List<GameObject> 
         asteroids, //level 1
         mines, //level 2
-        explosiones_father, //level 2 support
+        explosions, //level 2 support
         shooting_ships, //level 3
         enemy_ships; //level 4
 
@@ -134,10 +134,10 @@ public class GameManager : MonoBehaviour {
                 if (asteroids.Count == 0)
                     SpawnStuff(0, 120);
                 level_progress_starter.SetActive(true);
-                SpawnStuff(1, 30);
+                SpawnStuff(1, 10);
                 for (int i = 0; i < 8; i++) // 2 mins
                 {
-                    SpawnStuff(0, 10);
+                    SpawnStuff(0, 3);
                     yield return new WaitForSeconds(15);
                 }
                 //DeleteStuff(0, 30);
@@ -195,26 +195,24 @@ public class GameManager : MonoBehaviour {
                     GameObject go = Instantiate(mine);
                     //imposto il padre
                     go.transform.parent = mine_father.transform;
+                    //creo l'oggetto
+                    GameObject go_effect = Instantiate(explosion_effect);
+                    //imposto il padre
+                    go_effect.transform.parent = explosione_effect_father.transform;
+
                     float scale = Random.Range(3, 5);
-                    //impostare il colore
-                    //TODO
-                    //imposto la forma
-                    //int random_mesh = Random.Range(0, asteroids_meshes.Length);
-                    //go.GetComponent<MeshFilter>().mesh = asteroids_meshes[random_mesh];
-                    //go.GetComponent<MeshCollider>().sharedMesh = asteroids_meshes[random_mesh];
-                    //imposto i parametri per il controllore del movimento
+
+                    go.GetComponent<MovementAssistantMine>().explosion = go_effect;
                     go.GetComponent<MovementAssistantMine>().movement_speed = Mathf.Lerp(5, 3, scale);
                     go.GetComponent<MovementAssistantMine>().rotating_speed = new Vector3(
                         Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
                         Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
                         Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3));
-                    go.GetComponent<MovementAssistantMine>().rb = go.GetComponent<Rigidbody>();
-                    go.GetComponent<MovementAssistantMine>().margin_of_explosion = Random.Range(0, 5);
+                    //rb can be omitted, (automatically assigned)
+                    //go.GetComponent<MovementAssistantMine>().rb = go.GetComponent<Rigidbody>();
+                    go.GetComponent<MovementAssistantMine>().margin_of_explosion = Random.Range(0, -5);
                     //imposto la posizione inziale in modo che il controllo passi immediatamente al controllore
                     go.transform.position = new Vector3(0, -50, 0);
-                    //imposto la grandezza
-                    go.transform.localScale = new Vector3(
-                        2, 2, 2);
                     mines.Add(go);
                 }
                 break;
@@ -338,6 +336,7 @@ public class GameManager : MonoBehaviour {
         deathMenu.gameObject.SetActive(true);
     }
 
+    //TO FIX
     public void PlayAgain()
     {
         //elimino gli oggetti

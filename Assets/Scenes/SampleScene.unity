@@ -582,53 +582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &338729977
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4831208868032516, guid: a9dc51431a704064aa480d3c5b7530be, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831208868032516, guid: a9dc51431a704064aa480d3c5b7530be, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831208868032516, guid: a9dc51431a704064aa480d3c5b7530be, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831208868032516, guid: a9dc51431a704064aa480d3c5b7530be, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831208868032516, guid: a9dc51431a704064aa480d3c5b7530be, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831208868032516, guid: a9dc51431a704064aa480d3c5b7530be, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831208868032516, guid: a9dc51431a704064aa480d3c5b7530be, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4831208868032516, guid: a9dc51431a704064aa480d3c5b7530be, type: 2}
-      propertyPath: m_RootOrder
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114547408621693880, guid: a9dc51431a704064aa480d3c5b7530be,
-        type: 2}
-      propertyPath: explosion
-      value: 
-      objectReference: {fileID: 410642779}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a9dc51431a704064aa480d3c5b7530be, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &346230718
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,11 +664,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 60, y: 1, z: 60}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &410642779 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1282406748968484, guid: c227e5b84b640264fbdee2aad5ad3db2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1976740467}
 --- !u!1 &470830716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,10 +1817,11 @@ MonoBehaviour:
   mainCamera: {fileID: 534669904}
   asteroid: {fileID: 1568867093293166, guid: 64dd1e692ea92234abbb8adacd8b67e1, type: 2}
   asteroid_father: {fileID: 1639861633}
-  mine: {fileID: 1830708151763108, guid: 281282d031b3ee746a864c33a9ac7b22, type: 2}
+  mine: {fileID: 1748315341294156, guid: a9dc51431a704064aa480d3c5b7530be, type: 2}
   mine_father: {fileID: 648427438}
-  explosion_effect: {fileID: 0}
-  explosione_effect_father: {fileID: 0}
+  explosion_effect: {fileID: 1282406748968484, guid: c227e5b84b640264fbdee2aad5ad3db2,
+    type: 2}
+  explosione_effect_father: {fileID: 2060205498}
   shooting_ship: {fileID: 0}
   shooting_ship_father: {fileID: 0}
   enemy_ship: {fileID: 0}
@@ -4537,48 +4486,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1972925167}
   m_CullTransparentMesh: 0
---- !u!1001 &1976740467
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4837596894412762, guid: c227e5b84b640264fbdee2aad5ad3db2, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837596894412762, guid: c227e5b84b640264fbdee2aad5ad3db2, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837596894412762, guid: c227e5b84b640264fbdee2aad5ad3db2, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837596894412762, guid: c227e5b84b640264fbdee2aad5ad3db2, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837596894412762, guid: c227e5b84b640264fbdee2aad5ad3db2, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837596894412762, guid: c227e5b84b640264fbdee2aad5ad3db2, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837596894412762, guid: c227e5b84b640264fbdee2aad5ad3db2, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837596894412762, guid: c227e5b84b640264fbdee2aad5ad3db2, type: 2}
-      propertyPath: m_RootOrder
-      value: 21
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c227e5b84b640264fbdee2aad5ad3db2, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1997493033
 GameObject:
   m_ObjectHideFlags: 0
@@ -4786,3 +4693,31 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &2060205498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2060205499}
+  m_Layer: 0
+  m_Name: ExplosionEffectsFather
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2060205499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2060205498}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.38086, y: -0.08935547, z: 1.2353516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

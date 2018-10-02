@@ -57,7 +57,7 @@ public class MovementSystemMine : ComponentSystem
                 //reimposto la posizione dell'esplosione
                 e.movement.explosion.transform.position = e.transform.position;
                 //tolgo la mina
-                e.transform.position = new Vector3(Random.Range(-45, 45), 50, Random.Range(-45, 45));
+                e.transform.position = new Vector3(Random.Range(-45, 45), Random.Range(40, 90), Random.Range(-45, 45));
             }
             else
             {

@@ -1,5 +1,7 @@
 TO FIX:
--Instantiation of multiple mines
+-Change mines material (his shader is affected by ship's invincibility 
+shader)
+-Play again logic
 TO DO:
 -Add mine explosion logic -> shake
 -Create black holes -> shader
