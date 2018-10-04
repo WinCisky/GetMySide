@@ -35,13 +35,13 @@ public class MovementSystemComet : ComponentSystem
                 e.movement.rotating_speed.y,
                 e.movement.rotating_speed.z);
             bool out_of_delimiter = false;
-            if (e.transform.position.x > 45)
+            if (e.transform.position.x > 40)
                 out_of_delimiter = true;
-            if (e.transform.position.x < -45)
+            if (e.transform.position.x < -40)
                 out_of_delimiter = true;
-            if (e.transform.position.z > 45)
+            if (e.transform.position.z > 40)
                 out_of_delimiter = true;
-            if (e.transform.position.z < -45)
+            if (e.transform.position.z < -40)
                 out_of_delimiter = true;
             //riposizionamento
             if (e.transform.position.y < -10 || out_of_delimiter)

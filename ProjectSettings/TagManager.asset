@@ -7,6 +7,7 @@ TagManager:
   - Shootable
   - asteroid
   - mine
+  - enemy
   layers:
   - Default
   - TransparentFX

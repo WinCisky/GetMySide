@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour {
                 SpawnStuff(1, 10);
                 for (int i = 0; i < 8; i++) // 2 mins
                 {
-                    SpawnStuff(0, 3);
+                    SpawnStuff(1, 3);
                     yield return new WaitForSeconds(15);
                 }
                 //DeleteStuff(0, 30);
@@ -205,12 +205,12 @@ public class GameManager : MonoBehaviour {
                     go.GetComponent<MovementAssistantMine>().explosion = go_effect;
                     go.GetComponent<MovementAssistantMine>().movement_speed = Mathf.Lerp(5, 3, scale);
                     go.GetComponent<MovementAssistantMine>().rotating_speed = new Vector3(
-                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
-                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
-                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3));
+                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale)),
+                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale)),
+                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale)));
                     //rb can be omitted, (automatically assigned)
                     //go.GetComponent<MovementAssistantMine>().rb = go.GetComponent<Rigidbody>();
-                    go.GetComponent<MovementAssistantMine>().margin_of_explosion = Random.Range(0, -5);
+                    go.GetComponent<MovementAssistantMine>().margin_of_explosion = Random.Range(0, 8);
                     //imposto la posizione inziale in modo che il controllo passi immediatamente al controllore
                     go.transform.position = new Vector3(0, -50, 0);
                     mines.Add(go);

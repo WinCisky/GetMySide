@@ -7,7 +7,8 @@ public class TriggerManager : MonoBehaviour {
     //simple logic : if something collide -> game over
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("killed by: " + other.name);
-        GameManager.GM.GameOver();
+        //Debug.Log("killed by: " + other.name + other.tag);
+        if (other.tag == "enemy")
+            GameManager.GM.GameOver();
     }
 }

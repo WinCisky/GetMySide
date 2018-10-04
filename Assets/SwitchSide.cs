@@ -5,7 +5,8 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class SwitchSide : MonoBehaviour
 {
-
+    //global ref
+    public static SwitchSide SS;
     //main camera (useless so far)
     public Camera cam;
     //collider to be resized during rotation
@@ -53,13 +54,15 @@ public class SwitchSide : MonoBehaviour
     //possible movement directions
     private Vector3[] direction;
     //current rotation
-    private int i = 3;
+    public int i = 3;
     //chromatica aberr modifier
     ChromaticAberration chromatic_aberr;
 
     //modifiche imminenti
     private void Awake()
     {
+        //assegno il riferimento globale
+        SS = this;
         //reimposto lo shader dell'astronave
         ship_material.shader = normal_shader;
         can_move = false;

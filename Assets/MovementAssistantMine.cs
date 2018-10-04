@@ -26,7 +26,8 @@ public class MovementSystemMine : ComponentSystem
     protected override void OnUpdate()
     {
         float fixedDeltaTime = Time.deltaTime;
-        float point_of_explosion = GameManager.GM.mainCamera.ScreenToWorldPoint(new Vector3(0, Screen.height / 2, 0)).y;
+        //float point_of_explosion = GameManager.GM.mainCamera.ScreenToWorldPoint(new Vector3(0, Screen.height / 2, 0)).y;
+        float point_of_explosion = GameManager.GM.player.transform.position.y;
         //modifica parametri per le singole entita'
         foreach (var e in GetEntities<ComponentsComet>())
         {
@@ -57,7 +58,7 @@ public class MovementSystemMine : ComponentSystem
                 //reimposto la posizione dell'esplosione
                 e.movement.explosion.transform.position = e.transform.position;
                 //tolgo la mina
-                e.transform.position = new Vector3(Random.Range(-45, 45), Random.Range(40, 90), Random.Range(-45, 45));
+                e.transform.position = new Vector3(Random.Range(-40, 40), Random.Range(40, 90), Random.Range(-40, 40));
             }
             else
             {
@@ -65,12 +66,5 @@ public class MovementSystemMine : ComponentSystem
                 e.transform.position += new Vector3(0, -fixedDeltaTime * e.movement.movement_speed, 0);
             }
         }
-    }
-
-    IEnumerator WaitThenReset(ComponentsComet e)
-    {
-        yield return new WaitForSeconds(10);
-        Debug.Log("pollo");
-        
     }
 }
