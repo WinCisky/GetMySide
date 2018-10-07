@@ -118,6 +118,13 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(2);
         //nascondi testo
         inGameInfo.SetText("");
+        //controllo se il giocatore puo' sparare TODO
+        if (true)
+        {
+            ShootLogic.SL.can_shoot = true;
+            ShootLogic.SL.StartShooting();
+        }
+        //istanzio gli oggetti
         switch (level_to_start)
         {
             case 1:

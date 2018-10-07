@@ -27,17 +27,14 @@ public class MovementSystemBullet : ComponentSystem
         {
             if (!e.movement.usable)
             {
-                //riposiziono l'oggetto
-                if (e.movement.reset)
-                {
-                    e.movement.reset = false;
-                    e.transform.position = player;
-                }
-                //muovo l'oggetto
-                e.transform.position += fixedDeltaTime * Vector3.up * 300;
+                Vector3 movement = e.movement.transform.rotation * Vector3.up * 50;
+                e.transform.position += fixedDeltaTime * movement;
                 //spengo l'oggetto
-                if (e.transform.position.y > 40)
+                if (e.transform.position.y > 40 || e.movement.reset)
+                {
+                    e.transform.position = Vector3.up * -100;
                     e.movement.usable = true;
+                }
             }
         }
     }

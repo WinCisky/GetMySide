@@ -1,16 +1,16 @@
 TO FIX:
--Change mines material (his shader is affected by ship's invincibility 
-shader)
 -Play again logic
+-Bullets behaviour on collision with other objects
+-Ship tilt limit on input
 TO DO:
--Add mine explosion logic -> shake
--Create black holes -> shader
--Create bullet logic & instantiation -> particle system for collision, logic, movement, size, force
+-Add camera shake on certain events
 -Create enemy ship logic & instantiation -> camera move up/down (script)
+-Coordinate and make interact objects in scene
 -Hide pause button option -> settings ui: volume (music), movement speed
 -Shop ui -> start stage (wrap animation), weapon, skin
--Think about a Boss
+-Think about a Boss -> multiple traps around the scene (concentrated on the player)
+(in order to pass the the player has to follow a path)
 -Implement the colour system
 TO TEST:
 -Change input for dimension switch -> swipe right to change
--Mine explosion shader screen orintation & explosion timing
+-Bullet enviroment on mobile

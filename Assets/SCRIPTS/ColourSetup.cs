@@ -17,10 +17,10 @@ public class ColourSetup : MonoBehaviour {
 
     private void Awake()
     {
-        int rand = Random.Range(0, 4);
+        int rand = Random.Range(0, 19);
         mainCam.backgroundColor = colors[0 + (5 * rand)];
         asteroids.SetColor("_BaseColor", colors[1 + (5 * rand)]);
-        beam.SetColor("_BaseColor", colors[4 + (5 * rand)]);
+        beam.SetColor("_BaseColor", colors[2 + (5 * rand)]);
         ship.SetColor("_BaseColor", colors[2 + (5 * rand)]);
         mine.SetColor("_BaseColor", colors[3 + (5 * rand)]);
         //leave as FFF

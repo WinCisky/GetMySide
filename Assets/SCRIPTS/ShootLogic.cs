@@ -4,37 +4,61 @@ using UnityEngine;
 
 public class ShootLogic : MonoBehaviour {
 
-    public bool can_shoot = true;
+    public static ShootLogic SL;
+    public bool can_shoot = false;
     public GameObject ship_orientation;
     public GameObject laser1, laser2;
     public AnimationClip shoot_anim, idle_shoot_anim;
     public GameObject beam;
     private List<GameObject> beanpool;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        SL = this;
+    }
+
+    // Use this for initialization
+    void Start () {
         beanpool = new List<GameObject>();
         for (int i = 0; i < 20; i++)
         {
             GameObject obj = Instantiate(beam);
-            obj.SetActive(false);
+            obj.GetComponent<MovementAssistantBullet>().reset = true;
+            obj.GetComponent<MovementAssistantBullet>().usable = false;
             beanpool.Add(obj);
         }
+        /*
         StartCoroutine(shootl1());
-        //StartCoroutine(shootl2());
+        StartCoroutine(shootl2());
+        */
     }
 
+    public void StartShooting()
+    {
+        StartCoroutine(shootl1());
+        StartCoroutine(shootl2());
+    }
+
+
+    //riposiziono il raggio gli do la rotazione del giocatore e lo lascio andare
     private void ShootBeam(Transform origin)
     {
         bool found = false;
-        for (int i = 0; i < beanpool.Count || found; i++)
+        for (int i = 0; i < beanpool.Count && !found; i++)
         {
-            if (!beanpool[i].activeInHierarchy)
+            if (beanpool[i].GetComponent<MovementAssistantBullet>().usable)
             {
-                beanpool[i].SetActive(true);
+                beanpool[i].GetComponent<MovementAssistantBullet>().usable = false;
+                beanpool[i].GetComponent<MovementAssistantBullet>().reset = false;
                 beanpool[i].transform.position = origin.position;
-                //TO FIX
-                beanpool[i].transform.rotation = Quaternion.Euler(ship_orientation.transform.eulerAngles.x, GameManager.GM.player.transform.rotation.eulerAngles.y, 0);
+                //inverto la z nella seconda e terza dim
+                int rev = 1;
+                if (SwitchSide.SS.i == 0 || SwitchSide.SS.i == 1)
+                    rev = -1;
+                beanpool[i].transform.rotation = Quaternion.Euler(
+                    0,
+                    ((SwitchSide.SS.i + 1) % 4) * 90, //ok
+                    ship_orientation.transform.eulerAngles.z * rev); //ok
                 found = true;
             }
         }
@@ -45,10 +69,10 @@ public class ShootLogic : MonoBehaviour {
         laser1.GetComponent<Animation>().PlayQueued("shoot_animation");
         laser1.GetComponent<Animation>().PlayQueued("idle_shoot");
         yield return new WaitUntil(() => laser1.GetComponent<Animation>().IsPlaying("idle_shoot"));
-        Debug.Log("oky oky" + Time.time);
-        //ShootBeam(laser1.transform);
+        //Debug.Log("oky oky " + Time.time);
+        ShootBeam(laser1.transform);
         //i can shoot angain
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(1);
         if (can_shoot)
         {
             StartCoroutine(shootl1());
@@ -57,20 +81,16 @@ public class ShootLogic : MonoBehaviour {
 
     public IEnumerator shootl2()
     {
-        //yield return new WaitForSeconds(.5f);
-        while (true)
+        laser2.GetComponent<Animation>().PlayQueued("shoot_animation");
+        laser2.GetComponent<Animation>().PlayQueued("idle_shoot");
+        yield return new WaitUntil(() => laser2.GetComponent<Animation>().IsPlaying("idle_shoot"));
+        //Debug.Log("oky oky " + Time.time);
+        ShootBeam(laser2.transform);
+        //i can shoot angain
+        yield return new WaitForSeconds(1);
+        if (can_shoot)
         {
-            if (can_shoot)
-            {
-                laser2.GetComponent<Animation>().PlayQueued("shoot_animation");
-                laser2.GetComponent<Animation>().PlayQueued("idle_shoot");
-                yield return new WaitUntil(() => laser2.GetComponent<Animation>().IsPlaying("shoot_animation"));
-                Debug.Log("oky oky");
-                ShootBeam(laser1.transform);
-                //i can shoot angain
-            }
-            else //aspetto un po'
-                yield return new WaitForSeconds(1);
+            StartCoroutine(shootl2());
         }
     }
 }
