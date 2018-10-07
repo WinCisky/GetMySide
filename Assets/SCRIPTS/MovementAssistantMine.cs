@@ -5,6 +5,7 @@ using Unity.Entities;
 
 public class MovementAssistantMine : MonoBehaviour
 {
+    public bool toExplode;
     public float margin_of_explosion;
     public Vector3 rotating_speed;
     public Rigidbody rb;
@@ -36,8 +37,9 @@ public class MovementSystemMine : ComponentSystem
                 e.movement.rotating_speed.x,
                 e.movement.rotating_speed.y,
                 e.movement.rotating_speed.z);
-            if (e.transform.position.y < (point_of_explosion + e.movement.margin_of_explosion))
+            if (e.transform.position.y < (point_of_explosion + e.movement.margin_of_explosion) || e.movement.toExplode)
             {
+                e.movement.toExplode = false;
                 //esplodo
                 //muovo gli oggetti vicini
                 //Collider[] colliders = Physics.OverlapSphere(e.transform.position, Mathf.Infinity);

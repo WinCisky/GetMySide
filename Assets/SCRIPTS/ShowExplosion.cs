@@ -18,13 +18,14 @@ public class ShowExplosion : MonoBehaviour
         {
             advancment += Time.fixedDeltaTime;
             gameObject.GetComponent<Renderer>().material.SetFloat("Vector1_17CCCFF2", advancment);
-            float distance;
+            //float distance;
             yield return new WaitForFixedUpdate();
             if (advancment > 0.2f && advancment < 1)
             {
                 Collider[] colliders = Physics.OverlapSphere(transform.position, Mathf.Infinity);
                 if (((SwitchSide.SS.i + 1) % 2) == 0)
                 {
+                    /* //NOW USING SPHERE COLLIDER
                     distance = new Vector2(
                         GameManager.GM.player.transform.position.x - transform.position.x,
                         GameManager.GM.player.transform.position.y - transform.position.y).magnitude;
@@ -35,6 +36,7 @@ public class ShowExplosion : MonoBehaviour
                         Debug.Log("hit");
                         GameManager.GM.GameOver();
                     }
+                    */
                     foreach (var item in colliders)
                     {
                         Rigidbody rb = item.GetComponent<Rigidbody>();
@@ -52,6 +54,7 @@ public class ShowExplosion : MonoBehaviour
                 }
                 else
                 {
+                    /* //NOW USING SPHERE COLLIDER
                     distance = new Vector2(
                         GameManager.GM.player.transform.position.y - transform.position.y,
                         GameManager.GM.player.transform.position.z - transform.position.z).magnitude;
@@ -62,6 +65,7 @@ public class ShowExplosion : MonoBehaviour
                         Debug.Log("hit");
                         GameManager.GM.GameOver();
                     }
+                    */
                     foreach (var item in colliders)
                     {
                         Rigidbody rb = item.GetComponent<Rigidbody>();

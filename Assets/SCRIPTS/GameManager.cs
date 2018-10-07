@@ -210,6 +210,7 @@ public class GameManager : MonoBehaviour {
                     float scale = Random.Range(3, 5);
 
                     go.GetComponent<MovementAssistantMine>().explosion = go_effect;
+                    go.GetComponent<MovementAssistantMine>().toExplode = false;
                     go.GetComponent<MovementAssistantMine>().movement_speed = Mathf.Lerp(5, 3, scale);
                     go.GetComponent<MovementAssistantMine>().rotating_speed = new Vector3(
                         Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale)),
