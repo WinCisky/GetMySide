@@ -8,7 +8,7 @@ public class MovementAssistantComet : MonoBehaviour
     public bool toDestroy;
     public bool destroyable;
     public Vector3 rotating_speed;
-    public Rigidbody rb;
+    //public Rigidbody rb;
     public float movement_speed;
 }
 
@@ -29,6 +29,8 @@ public class MovementSystemComet : ComponentSystem
         //modifica parametri per le singole entita'
         foreach (var e in GetEntities<ComponentsComet>())
         {
+            //posizione
+            e.transform.position += new Vector3(0, -fixedDeltaTime * e.movement.movement_speed, 0);
             //rotazione
             e.transform.rotation *= Quaternion.Euler(
                 e.movement.rotating_speed.x,
@@ -46,7 +48,7 @@ public class MovementSystemComet : ComponentSystem
             //riposizionamento
             if (e.transform.position.y < -10 || out_of_delimiter)
             {
-                //lóggetto va distrutto?
+                //l'oggetto va distrutto?
                 if (!e.movement.toDestroy)
                 {
                     e.transform.position = new Vector3(
@@ -54,10 +56,10 @@ public class MovementSystemComet : ComponentSystem
                         Random.Range(40, 90),
                         Random.Range(-30, +30));
                     //cancello le forze precedenti e reimposto la forza iniziale
-                    e.movement.rb.velocity = Vector3.zero;
-                    e.movement.rb.angularVelocity = Vector3.zero;
+                    //e.movement.rb.velocity = Vector3.zero;
+                    //e.movement.rb.angularVelocity = Vector3.zero;
                     e.movement.transform.rotation = Quaternion.identity;
-                    e.movement.rb.AddForce(-e.transform.up * e.movement.movement_speed, ForceMode.Impulse);
+                    //e.movement.rb.AddForce(-e.transform.up * e.movement.movement_speed, ForceMode.Impulse);
                 }
                 else
                 {

@@ -1922,11 +1922,11 @@ MonoBehaviour:
   enemy_ship: {fileID: 0}
   enemy_ship_father: {fileID: 0}
   asteroids_meshes:
-  - {fileID: 4300002, guid: fe6ea39deb410344dad0ebe88b10913e, type: 3}
-  - {fileID: 4300004, guid: b2d03a4e5f35ca4438055a0a6b6d4666, type: 3}
-  - {fileID: 4300000, guid: 482f13fa480b18541a989518642908ed, type: 3}
-  - {fileID: 4300000, guid: 9a9a8e018d51a6e488fe6dca3a6b59a0, type: 3}
-  - {fileID: 4300000, guid: 3cc53f04b5b125741b484d348c616b8a, type: 3}
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &703596826
 Transform:
   m_ObjectHideFlags: 0
@@ -4022,7 +4022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f98c98626dd2240a541cb5bedc4881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  can_shoot: 1
+  can_shoot: 0
   ship_orientation: {fileID: 299040077}
   laser1: {fileID: 1630630569}
   laser2: {fileID: 1852456902}

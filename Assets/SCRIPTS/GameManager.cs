@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour {
         shieldCooldown = Mathf.Infinity;
 
         //just for testing TO REMOVE
-        PlayerPrefs.SetInt("level", 2);
+        PlayerPrefs.SetInt("level", 1);
 
         //imposto il livello in base a quello raggiunto
         level_to_start = PlayerPrefs.GetInt("level", 1);
@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour {
         //nascondi testo
         inGameInfo.SetText("");
         //controllo se il giocatore puo' sparare TODO
-        if (true)
+        if (false)
         {
             ShootLogic.SL.can_shoot = true;
             ShootLogic.SL.StartShooting();
@@ -182,16 +182,18 @@ public class GameManager : MonoBehaviour {
                     go.GetComponent<MeshCollider>().sharedMesh = asteroids_meshes[random_mesh];
                     //imposto i parametri per il controllore del movimento
                     go.GetComponent<MovementAssistantComet>().movement_speed = Mathf.Lerp(5, 3, scale);
+                    /*
                     go.GetComponent<MovementAssistantComet>().rotating_speed = new Vector3(
                         Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
                         Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
                         Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3));
-                    go.GetComponent<MovementAssistantComet>().rb = go.GetComponent<Rigidbody>();
+                    */
+                    go.GetComponent<MovementAssistantComet>().rotating_speed = Vector3.zero;
+                    //go.GetComponent<MovementAssistantComet>().rb = go.GetComponent<Rigidbody>();
                     //imposto la posizione inziale in modo che il controllo passi immediatamente al controllore
                     go.transform.position = new Vector3(0, -50, 0);
                     //imposto la grandezza
-                    go.transform.localScale = new Vector3(
-                        scale, scale, scale);
+                    go.transform.localScale = Vector3.one * 3;
                     asteroids.Add(go);
                 }
                 break;
