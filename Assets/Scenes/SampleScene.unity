@@ -2148,6 +2148,7 @@ MonoBehaviour:
   - {r: 0.92549026, g: 0.93725497, b: 0.9450981, a: 0}
   mainCam: {fileID: 534669904}
   asteroids: {fileID: 2100000, guid: 1d2b9d82e4d1d774085a8093b6b42313, type: 2}
+  asteroids_anim: {fileID: 2100000, guid: 5bc2bb297f3468c45a36afda7a0db9ad, type: 2}
   beam: {fileID: 2100000, guid: 63efdf985c05be044b26e959fd0727b7, type: 2}
   ship: {fileID: 2100000, guid: 1f7e075934823344ca88913a99ab59be, type: 2}
   explosion: {fileID: 2100000, guid: 590cb482804ebb84f9490086d2ed013e, type: 2}

@@ -9,6 +9,7 @@ public class ColourSetup : MonoBehaviour {
     public Camera mainCam;
     public Material
         asteroids,
+        asteroids_anim,
         beam,
         ship,
         explosion,
@@ -23,6 +24,7 @@ public class ColourSetup : MonoBehaviour {
         beam.SetColor("_BaseColor", colors[2 + (5 * rand)]);
         ship.SetColor("_BaseColor", colors[2 + (5 * rand)]);
         mine.SetColor("_BaseColor", colors[3 + (5 * rand)]);
+        asteroids_anim.SetColor("_BaseColor", colors[3 + (5 * rand)]);
         //leave as FFF
         //explosion.SetColor("_BaseColor1", colors[1 + (5 * rand)]);
         //explosion.SetColor("_BaseColor2", colors[1 + (5 * rand)]);
