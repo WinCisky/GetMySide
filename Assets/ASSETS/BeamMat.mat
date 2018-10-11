@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: BeamMat
   m_Shader: {fileID: 4800000, guid: ac259408a95d1ca489f59287c5b5867c, type: 3}
   m_ShaderKeywords: 
@@ -81,7 +82,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_DC8B315B: {r: 10.8549, g: 11.48235, b: 11.98431, a: 1}
-    - _BaseColor: {r: 0.90196085, g: 0.9333334, b: 0.6117647, a: 0}
+    - _BaseColor: {r: 0.5058824, g: 0.8313726, b: 0.9803922, a: 0}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

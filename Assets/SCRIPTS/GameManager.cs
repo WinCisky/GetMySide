@@ -178,22 +178,22 @@ public class GameManager : MonoBehaviour {
                     //TODO
                     //imposto la forma
                     int random_mesh = Random.Range(0, asteroids_meshes.Length);
-                    go.GetComponent<MeshFilter>().mesh = asteroids_meshes[random_mesh];
-                    go.GetComponent<MeshCollider>().sharedMesh = asteroids_meshes[random_mesh];
+                    //go.GetComponent<MeshFilter>().mesh = asteroids_meshes[random_mesh];
+                    go.GetComponentInChildren<MeshCollider>().sharedMesh = asteroids_meshes[random_mesh];
                     //imposto i parametri per il controllore del movimento
-                    go.GetComponent<MovementAssistantComet>().movement_speed = Mathf.Lerp(5, 3, scale);
+                    go.GetComponentInChildren<MovementAssistantComet>().movement_speed = Mathf.Lerp(5, 3, scale);
                     /*
                     go.GetComponent<MovementAssistantComet>().rotating_speed = new Vector3(
                         Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
                         Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
                         Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3));
                     */
-                    go.GetComponent<MovementAssistantComet>().rotating_speed = Vector3.zero;
+                    go.GetComponentInChildren<MovementAssistantComet>().rotating_speed = Vector3.zero;
                     //go.GetComponent<MovementAssistantComet>().rb = go.GetComponent<Rigidbody>();
                     //imposto la posizione inziale in modo che il controllo passi immediatamente al controllore
                     go.transform.position = new Vector3(0, -50, 0);
                     //imposto la grandezza
-                    go.transform.localScale = Vector3.one * 3;
+                    //go.transform.localScale = Vector3.one;
                     asteroids.Add(go);
                 }
                 break;
