@@ -174,56 +174,16 @@ public class GameManager : MonoBehaviour {
                     //imposto il padre
                     go.transform.parent = asteroid_father.transform;
                     float scale = Random.Range(3, 5);
-                    //impostare il colore
-                    //TODO
-                    //imposto la forma
-                    int random_mesh = Random.Range(0, asteroids_meshes.Length);
-                    //go.GetComponent<MeshFilter>().mesh = asteroids_meshes[random_mesh];
-                    go.GetComponentInChildren<MeshCollider>().sharedMesh = asteroids_meshes[random_mesh];
-                    //imposto i parametri per il controllore del movimento
                     go.GetComponentInChildren<MovementAssistantComet>().movement_speed = Mathf.Lerp(5, 3, scale);
-                    /*
-                    go.GetComponent<MovementAssistantComet>().rotating_speed = new Vector3(
-                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
-                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3),
-                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale) / 3));
-                    */
                     go.GetComponentInChildren<MovementAssistantComet>().rotating_speed = Vector3.zero;
-                    //go.GetComponent<MovementAssistantComet>().rb = go.GetComponent<Rigidbody>();
-                    //imposto la posizione inziale in modo che il controllo passi immediatamente al controllore
                     go.transform.position = new Vector3(0, -50, 0);
-                    //imposto la grandezza
-                    //go.transform.localScale = Vector3.one;
                     asteroids.Add(go);
                 }
                 break;
             case 1:
                 for (int i = 0; i < amount; i++)
                 {
-                    //creo l'oggetto
-                    GameObject go = Instantiate(mine);
-                    //imposto il padre
-                    go.transform.parent = mine_father.transform;
-                    //creo l'oggetto
-                    GameObject go_effect = Instantiate(explosion_effect);
-                    //imposto il padre
-                    go_effect.transform.parent = explosione_effect_father.transform;
-
-                    float scale = Random.Range(3, 5);
-
-                    go.GetComponent<MovementAssistantMine>().explosion = go_effect;
-                    go.GetComponent<MovementAssistantMine>().toExplode = false;
-                    go.GetComponent<MovementAssistantMine>().movement_speed = Mathf.Lerp(5, 3, scale);
-                    go.GetComponent<MovementAssistantMine>().rotating_speed = new Vector3(
-                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale)),
-                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale)),
-                        Random.Range(-1, 1) * (Mathf.InverseLerp(10, 1, scale)));
-                    //rb can be omitted, (automatically assigned)
-                    //go.GetComponent<MovementAssistantMine>().rb = go.GetComponent<Rigidbody>();
-                    go.GetComponent<MovementAssistantMine>().margin_of_explosion = Random.Range(0, 8);
-                    //imposto la posizione inziale in modo che il controllo passi immediatamente al controllore
-                    go.transform.position = new Vector3(0, -50, 0);
-                    mines.Add(go);
+                    //TODO
                 }
                 break;
             default:
