@@ -174,8 +174,10 @@ public class GameManager : MonoBehaviour {
                     //imposto il padre
                     go.transform.parent = asteroid_father.transform;
                     float scale = Random.Range(3, 5);
+                    /*
                     go.GetComponentInChildren<MovementAssistantComet>().movement_speed = Mathf.Lerp(5, 3, scale);
                     go.GetComponentInChildren<MovementAssistantComet>().rotating_speed = Vector3.zero;
+                    */
                     go.transform.position = new Vector3(0, -50, 0);
                     asteroids.Add(go);
                 }
@@ -199,7 +201,7 @@ public class GameManager : MonoBehaviour {
                 for (int i = 0; i < asteroids.Count; i++)
                 {
                     if (Random.Range(0, 100) < percent) // cancello una percentuale degli oggetti
-                        asteroids[i].GetComponent<MovementAssistantComet>().toDestroy = true;
+                        asteroids[i].GetComponent<MovementAssistantComet>().can_be_used = false;
                 }
                 StartCoroutine(GarbageDeleter(0, asteroids));
                 break;
@@ -220,11 +222,14 @@ public class GameManager : MonoBehaviour {
                 {
                     foreach (var item in list)
                     {
+                        //TO DO : change destroyment of entities
+                        /*
                         if (item.GetComponent<MovementAssistantComet>().destroyable)
                         {
                             list.Remove(item);
                             Destroy(item);
                         }
+                        */
                     }
                     yield return new WaitForSeconds(15);
                 }

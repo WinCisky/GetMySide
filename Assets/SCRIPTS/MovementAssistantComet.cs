@@ -4,12 +4,13 @@ using UnityEngine;
 using Unity.Entities;
 
 public class MovementAssistantComet : MonoBehaviour
-{
-    public bool toDestroy;
-    public bool destroyable;
-    public Vector3 rotating_speed;
-    //public Rigidbody rb;
-    public float movement_speed;
+{    
+    //NEW UNIT TESTING
+    public Vector3 direction;
+    public Quaternion rotation;
+    public float speed;
+    public bool can_be_used;
+    public bool can_rotate;
 }
 
 //Hybrid ECS
@@ -23,50 +24,23 @@ public class MovementSystemComet : ComponentSystem
 
     protected override void OnUpdate()
     {
-        //parametri identici per tutte le entita'
-        //Vector3 target = GameManager.GM.player.transform.position;
         float fixedDeltaTime = Time.deltaTime;
         //modifica parametri per le singole entita'
         foreach (var e in GetEntities<ComponentsComet>())
         {
-            //posizione
-            e.transform.position += new Vector3(0, -fixedDeltaTime * e.movement.movement_speed, 0);
-            //rotazione
-            e.transform.rotation *= Quaternion.Euler(
-                e.movement.rotating_speed.x,
-                e.movement.rotating_speed.y,
-                e.movement.rotating_speed.z);
-            bool out_of_delimiter = false;
-            if (e.transform.position.x > 40)
-                out_of_delimiter = true;
-            if (e.transform.position.x < -40)
-                out_of_delimiter = true;
-            if (e.transform.position.z > 40)
-                out_of_delimiter = true;
-            if (e.transform.position.z < -40)
-                out_of_delimiter = true;
-            //riposizionamento
-            if (e.transform.position.y < -10 || out_of_delimiter)
+            //l'oggetto e' usabile?
+            if (e.transform.position.y < -10)
             {
-                //l'oggetto va distrutto?
-                if (!e.movement.toDestroy)
-                {
-                    e.transform.position = new Vector3(
-                        Random.Range(-30, +30),
-                        Random.Range(40, 90),
-                        Random.Range(-30, +30));
-                    //cancello le forze precedenti e reimposto la forza iniziale
-                    //e.movement.rb.velocity = Vector3.zero;
-                    //e.movement.rb.angularVelocity = Vector3.zero;
-                    e.movement.transform.rotation = Quaternion.identity;
-                    //e.movement.rb.AddForce(-e.transform.up * e.movement.movement_speed, ForceMode.Impulse);
-                }
-                else
-                {
-                    //l'oggetto puo' essere dstrutto
-                    e.movement.destroyable = true;
-                }
+                e.movement.can_be_used = true;
             }
+            else
+            {
+                //posizione
+                e.transform.position += e.movement.direction * fixedDeltaTime * e.movement.speed;
+                //rotazione
+                if (e.movement.can_rotate)
+                    e.transform.rotation *= e.movement.rotation;
+            }            
         }
     }
 }
