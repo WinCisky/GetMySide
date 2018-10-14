@@ -68,6 +68,14 @@ public class GameManager : MonoBehaviour {
         shooting_ships, //level 3
         enemy_ships; //level 4
 
+    private struct GridStruct
+    {
+        bool used;
+        Vector3 pos;
+    }
+    //posizioni per l'istanziazione
+    private bool[] grid;
+
     // Use this for initialization
     void Awake () {
         //Inizializzo il riferimento
@@ -75,6 +83,13 @@ public class GameManager : MonoBehaviour {
         //disattivo lo scudo di default
         isShieldUp = false;
         shieldCooldown = Mathf.Infinity;
+
+        //inizializzo la griglia
+        grid = new bool[20];
+        for (int i = 0; i < 20; i++)
+        {
+            grid[i]
+        }
 
         //just for testing TO REMOVE
         PlayerPrefs.SetInt("level", 1);
