@@ -31,8 +31,6 @@ public class SwitchSide : MonoBehaviour
     public Transform player_to_rotate_z, player_to_rotate_y;
     //post processing profile
     public PostProcessProfile post_process_volume;
-    //central point
-    public Transform central_point;
 
     //point to rotate around
     private Vector3 center_of_rotation;
@@ -341,11 +339,7 @@ public class SwitchSide : MonoBehaviour
                 break;
         }
         cameras[(i + 1) % cameras.Length].SetActive(true);        
-
-        central_point.position = new Vector3(central_point.position.x, cameras[0].transform.position.y, central_point.transform.position.z);
-
-        //cameras[(i + 1) % cameras.Length].GetComponent<Cinemachine.CinemachineVirtualCamera>().LookAt = central_point;
-
+        
         //cambio le dimensioni del delimitatore della camera (nell'asse in cui sto guardando)
         //in modo da mostrare tutti gli oggetti
         if ((i % 2) == 0)

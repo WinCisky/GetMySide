@@ -57,9 +57,6 @@ public class GameManager : MonoBehaviour {
         enemy_ship, //level 4
         enemy_ship_father; //level 4
 
-    //mesh degli oggetti
-    public Mesh[] asteroids_meshes;
-
     //pool di oggetti
     private List<GameObject> 
         asteroids, //level 1
@@ -70,11 +67,11 @@ public class GameManager : MonoBehaviour {
 
     private struct GridStruct
     {
-        bool used;
-        Vector3 pos;
+        public Vector3 pos; //posizione alla quale devo spawnare
+        public List<GameObject> queue; //cosa devo spawnare
     }
     //posizioni per l'istanziazione
-    private bool[] grid;
+    private GridStruct[,] grid;
 
     // Use this for initialization
     void Awake () {
@@ -85,10 +82,25 @@ public class GameManager : MonoBehaviour {
         shieldCooldown = Mathf.Infinity;
 
         //inizializzo la griglia
-        grid = new bool[20];
+        grid = new GridStruct[20,20];
         for (int i = 0; i < 20; i++)
         {
-            grid[i]
+            for (int j = 0; j < 20; j++)
+            {
+                grid[i, j].pos = new Vector3(i, 30, j);
+                grid[i, j].queue = new List<GameObject>();
+            }
+        }
+
+        grid[0, 0].queue.Add(null);
+        grid[0, 0].queue.Add(null);
+        grid[0, 0].queue.Add(new GameObject());
+        grid[0, 0].queue.Add(null);
+        grid[0, 0].queue.Add(null);
+        Debug.Log(grid[0, 0].queue);
+        foreach (var item in grid[0, 0].queue)
+        {
+            Debug.Log(item);
         }
 
         //just for testing TO REMOVE
