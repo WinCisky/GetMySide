@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
         enemy_ship_father; //level 4
 
     //pool di oggetti
-    private List<GameObject> 
+    private List<GameObject>
         asteroids, //level 1
         mines, //level 2
         explosions, //level 2 support
@@ -73,8 +73,56 @@ public class GameManager : MonoBehaviour {
     //posizioni per l'istanziazione
     private GridStruct[,] grid;
 
+    /*
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    */
+
+    //n, 10, 20 un massimo di 20 oggetti nella scena
+    int[,,] structure = new int[2, 2, 20] 
+    { 
+        { 
+            {
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+
+            }, 
+            {
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            }
+        },                                       
+        { 
+            {
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            }, 
+            {
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            }
+        }
+    };
+
+
+
     // Use this for initialization
     void Awake () {
+        Debug.Log(structure[1,1,1]);
         //Inizializzo il riferimento
         GM = this;
         //disattivo lo scudo di default
@@ -87,20 +135,9 @@ public class GameManager : MonoBehaviour {
         {
             for (int j = 0; j < 20; j++)
             {
-                grid[i, j].pos = new Vector3(i, 30, j);
+                grid[i, j].pos = new Vector3(i - 10, 30, j - 10);
                 grid[i, j].queue = new List<GameObject>();
             }
-        }
-
-        grid[0, 0].queue.Add(null);
-        grid[0, 0].queue.Add(null);
-        grid[0, 0].queue.Add(new GameObject());
-        grid[0, 0].queue.Add(null);
-        grid[0, 0].queue.Add(null);
-        Debug.Log(grid[0, 0].queue);
-        foreach (var item in grid[0, 0].queue)
-        {
-            Debug.Log(item);
         }
 
         //just for testing TO REMOVE
@@ -109,10 +146,10 @@ public class GameManager : MonoBehaviour {
         //imposto il livello in base a quello raggiunto
         level_to_start = PlayerPrefs.GetInt("level", 1);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 
@@ -137,6 +174,8 @@ public class GameManager : MonoBehaviour {
         input_movement_manager.can_move = true;
     }
 
+
+
     private IEnumerator StartLvl()
     {
         //mostra testo
@@ -156,25 +195,10 @@ public class GameManager : MonoBehaviour {
         {
             case 1:
                 level_progress_starter.SetActive(true);
-                SpawnStuff(0, 70);
-                for (int i = 0; i < 8; i++) // 2 mins
-                {
-                    SpawnStuff(0, 10);
-                    yield return new WaitForSeconds(15);
-                }
-                DeleteStuff(0, 30);
+                //Aggiungo la sequenza di creazione degli ogetti
+                //TODO
                 break;
             case 2:
-                if (asteroids.Count == 0)
-                    SpawnStuff(0, 120);
-                level_progress_starter.SetActive(true);
-                SpawnStuff(1, 10);
-                for (int i = 0; i < 8; i++) // 2 mins
-                {
-                    SpawnStuff(1, 3);
-                    yield return new WaitForSeconds(15);
-                }
-                //DeleteStuff(0, 30);
                 //TODO
                 break;
             case 3:
@@ -189,83 +213,71 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void SpawnStuff(int index, int amount)
-    {
-        switch (index)
-        {
-            case 0:
-                for (int i = 0; i < amount; i++)
-                {
-                    //creo l'oggetto
-                    GameObject go = Instantiate(asteroid);
-                    //imposto il padre
-                    go.transform.parent = asteroid_father.transform;
-                    float scale = Random.Range(3, 5);
-                    /*
-                    go.GetComponentInChildren<MovementAssistantComet>().movement_speed = Mathf.Lerp(5, 3, scale);
-                    go.GetComponentInChildren<MovementAssistantComet>().rotating_speed = Vector3.zero;
-                    */
-                    go.transform.position = new Vector3(0, -50, 0);
-                    asteroids.Add(go);
-                }
-                break;
-            case 1:
-                for (int i = 0; i < amount; i++)
-                {
-                    //TODO
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void DeleteStuff(int index, int percent)
-    {
-        switch (index)
-        {
-            case 0:
-                for (int i = 0; i < asteroids.Count; i++)
-                {
-                    if (Random.Range(0, 100) < percent) // cancello una percentuale degli oggetti
-                        asteroids[i].GetComponent<MovementAssistantComet>().can_be_used = false;
-                }
-                StartCoroutine(GarbageDeleter(0, asteroids));
-                break;
-            default:
-                break;
-        }
-    }
-
-    //cancella gli oggetti usciti di scena
-    IEnumerator GarbageDeleter(int index, List<GameObject> list)
-    {
-        yield return new WaitForSeconds(10);
-        switch (index)
-        {
-            case 0:
-                //1 min, cancello ogni 15 s
-                for (int i = 0; i < 4; i++)
-                {
-                    foreach (var item in list)
+    private GameObject GetPoolElement(List <GameObject> list, int index_for_instantiation){
+        //cerco un oggetto inattivo
+        foreach (var item in list){
+            switch (index_for_instantiation)
+            {
+                case 0:
+                    if (item.GetComponentInChildren<MovementAssistantComet>().can_be_used)
                     {
-                        //TO DO : change destroyment of entities
-                        /*
-                        if (item.GetComponent<MovementAssistantComet>().destroyable)
-                        {
-                            list.Remove(item);
-                            Destroy(item);
-                        }
-                        */
+                        item.GetComponentInChildren<MovementAssistantComet>().can_be_used = false;
+                        return item;
                     }
-                    yield return new WaitForSeconds(15);
-                }
+                    break;
+                default:
+                    return null;
+                    break;
+            }
+        }
+        //non ho trovato nessun oggetto inattivo -> ne creo uno
+        switch (index_for_instantiation)
+        {
+            case 0:
+                //creo l'oggetto
+                GameObject go = Instantiate(asteroid);
+                //imposto il padre
+                go.transform.parent = asteroid_father.transform;
+                //imposto la posizione
+                go.transform.position = new Vector3(0, -50, 0);
+                //imposto come in uso
+                go.GetComponentInChildren<MovementAssistantComet>().can_be_used = false;
+                //aggiungo alla pool
+                list.Add(go);
+                //ritorno l'oggetto
+                return go;
+            default:
+                return null;
+                break;
+        }
+    }
+
+    private void AddNull(int n)
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            for (int j = 0; j < 20; j++)
+            {
+                if (grid[i, j].queue.Count < n)
+                    grid[i, j].queue.Add(null);
+            }
+        }
+    }
+
+    //Creazione della coda
+    private void AddSection(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                
                 break;
             default:
                 break;
         }
-        yield return null;
     }
+
+
 
     public void timeStart()
     {
@@ -309,7 +321,7 @@ public class GameManager : MonoBehaviour {
         switch (level_to_start)
         {
             case 2:
-                
+
                 break;
             case 3:
                 break;
