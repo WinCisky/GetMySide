@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour {
         shooting_ships, //level 3
         enemy_ships; //level 4
 
+    /*
     private struct GridStruct
     {
         public Vector3 pos; //posizione alla quale devo spawnare
@@ -72,63 +73,72 @@ public class GameManager : MonoBehaviour {
     }
     //posizioni per l'istanziazione
     private GridStruct[,] grid;
-
-    /*
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     */
 
-    //n, 10, 20 un massimo di 20 oggetti nella scena
-    int[,,] structure = new int[2, 2, 20] 
-    { 
-        { 
-            {
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 
-            }, 
-            {
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            }
-        },                                       
-        { 
-            {
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            }, 
-            {
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            }
+    //list l1 : different objs
+    //list l2 : different frame
+    //list l3 : different pos
+    List<List<List<int>>> obstacles;
+
+    void AddNumbers(List<List<int>> frames, int[] numbers)
+    {
+        List<int> tmp = new List<int>();
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            tmp.Add(numbers[i]);
         }
-    };
-
-
+        frames.Add(tmp);
+    }
 
     // Use this for initialization
     void Awake () {
-        Debug.Log(structure[1,1,1]);
+
+        //Testing
+        obstacles = new List<List<List<int>>>();
+        List<List<int>> frame_one = new List<List<int>>();
+        AddNumbers(frame_one,new[]{ 19 , 380 });
+        AddNumbers(frame_one, new[] { 38, 361 });
+        AddNumbers(frame_one, new[] { 57, 342 });
+        AddNumbers(frame_one, new[] { 76, 323 });
+        AddNumbers(frame_one, new[] { 95, 304 });
+        AddNumbers(frame_one, new[] { 114, 285 });
+        AddNumbers(frame_one, new[] { 133, 266 });
+        AddNumbers(frame_one, new[] { 152, 247 });
+        AddNumbers(frame_one, new[] { 171, 228 });
+        AddNumbers(frame_one, new[] { 228, 171 });
+        AddNumbers(frame_one, new[] { 247, 152 });
+        AddNumbers(frame_one, new[] { 266, 209, 190, 133 });
+        AddNumbers(frame_one, new[] { 285, 228, 209, 190, 171, 114 });
+        AddNumbers(frame_one, new[] { 304, 247, 228, 209, 190, 171, 152, 95 });
+        AddNumbers(frame_one, new[] { 323, 266, 247, 228, 209, 190, 171, 152, 133, 76 });
+        AddNumbers(frame_one, new[] { 342, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 57 });
+        AddNumbers(frame_one, new[] { 361, 304, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 95, 38 });
+        AddNumbers(frame_one, new[] { 380, 323, 304, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 95, 76, 19 });
+        AddNumbers(frame_one, new[] { 380, 323, 304, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 95, 76, 19 });
+        AddNumbers(frame_one, new[] { 380, 323, 304, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 95, 76, 19 });
+        AddNumbers(frame_one, new[] { 361, 304, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 95, 38 });
+        AddNumbers(frame_one, new[] { 342, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 57 });
+        AddNumbers(frame_one, new[] { 323, 266, 247, 228, 209, 190, 171, 152, 133, 76 });
+        AddNumbers(frame_one, new[] { 304, 247, 228, 209, 190, 171, 152, 95 });
+        AddNumbers(frame_one, new[] { 285, 228, 209, 190, 171, 114 });
+        AddNumbers(frame_one, new[] { 266, 209, 190, 133 });
+        AddNumbers(frame_one, new[] { 247, 152 });
+        AddNumbers(frame_one, new[] { 228, 171 });
+        obstacles.Add(frame_one);
+
+        Debug.Log(map(0, 0, 19, -30, 30));
+        Debug.Log(map(19, 0, 19, -30, 30));
+        Debug.Log(map(9, 0, 19, -30, 30));
+
+
         //Inizializzo il riferimento
         GM = this;
         //disattivo lo scudo di default
         isShieldUp = false;
         shieldCooldown = Mathf.Infinity;
 
+        /*
         //inizializzo la griglia
         grid = new GridStruct[20,20];
         for (int i = 0; i < 20; i++)
@@ -139,6 +149,7 @@ public class GameManager : MonoBehaviour {
                 grid[i, j].queue = new List<GameObject>();
             }
         }
+        */
 
         //just for testing TO REMOVE
         PlayerPrefs.SetInt("level", 1);
@@ -158,7 +169,7 @@ public class GameManager : MonoBehaviour {
 
 
 
-
+    
 
     public void StartLevel()
     {
@@ -172,6 +183,8 @@ public class GameManager : MonoBehaviour {
         introCamera.SetActive(false);
         StartCoroutine(StartLvl());
         input_movement_manager.can_move = true;
+
+        StartCoroutine(Spawner());
     }
 
 
@@ -252,6 +265,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    /*
     private void AddNull(int n)
     {
         for (int i = 0; i < 20; i++)
@@ -265,18 +279,32 @@ public class GameManager : MonoBehaviour {
     }
 
     //Creazione della coda
-    private void AddSection(int index)
+    private void AddSection()
     {
-        switch (index)
-        {
-            case 0:
-                
-                break;
-            default:
-                break;
-        }
+        
+    }
+    */
+
+    private float map(float value, int low1, int high1, int low2, int high2)
+    {
+        return (low2 + (value - low1) * (high2 - low2) / (high1 - low1));
     }
 
+    private IEnumerator Spawner()
+    {
+        foreach (var obj in obstacles)
+        {
+            foreach (var frame in obj)
+            {
+                foreach (var item in frame)
+                {
+                    GameObject go = GetPoolElement(asteroids, 0);
+                    //go.transform.position = new Vector3(item%)
+                }
+                yield return new WaitForSeconds(1);
+            }
+        }
+    }
 
 
     public void timeStart()
