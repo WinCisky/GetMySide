@@ -6,7 +6,8 @@ using TMPro;
 using UnityEngine.UI;
 using Cinemachine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     //riferimento al GameManager in uso
     public static GameManager GM;
@@ -78,12 +79,12 @@ public class GameManager : MonoBehaviour {
 
     //list l1 : different objs
     //list l2 : different frame
-    //list l3 : different pos
-    List<List<List<int>>> obstacles;
+    //list l3 : different pos <x,z>
+    List<List<List<Vector2>>> obstacles;
 
-    void AddNumbers(List<List<int>> frames, int[] numbers)
+    void AddNumbers(List<List<Vector2>> frames, Vector2[] numbers)
     {
-        List<int> tmp = new List<int>();
+        List<Vector2> tmp = new List<Vector2>();
         for (int i = 0; i < numbers.Length; i++)
         {
             tmp.Add(numbers[i]);
@@ -92,44 +93,56 @@ public class GameManager : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Awake () {
+    void Awake()
+    {
 
         //Testing
-        obstacles = new List<List<List<int>>>();
-        List<List<int>> frame_one = new List<List<int>>();
-        AddNumbers(frame_one,new[]{ 19 , 380 });
-        AddNumbers(frame_one, new[] { 38, 361 });
-        AddNumbers(frame_one, new[] { 57, 342 });
-        AddNumbers(frame_one, new[] { 76, 323 });
-        AddNumbers(frame_one, new[] { 95, 304 });
-        AddNumbers(frame_one, new[] { 114, 285 });
-        AddNumbers(frame_one, new[] { 133, 266 });
-        AddNumbers(frame_one, new[] { 152, 247 });
-        AddNumbers(frame_one, new[] { 171, 228 });
-        AddNumbers(frame_one, new[] { 228, 171 });
-        AddNumbers(frame_one, new[] { 247, 152 });
-        AddNumbers(frame_one, new[] { 266, 209, 190, 133 });
-        AddNumbers(frame_one, new[] { 285, 228, 209, 190, 171, 114 });
-        AddNumbers(frame_one, new[] { 304, 247, 228, 209, 190, 171, 152, 95 });
-        AddNumbers(frame_one, new[] { 323, 266, 247, 228, 209, 190, 171, 152, 133, 76 });
-        AddNumbers(frame_one, new[] { 342, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 57 });
-        AddNumbers(frame_one, new[] { 361, 304, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 95, 38 });
-        AddNumbers(frame_one, new[] { 380, 323, 304, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 95, 76, 19 });
-        AddNumbers(frame_one, new[] { 380, 323, 304, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 95, 76, 19 });
-        AddNumbers(frame_one, new[] { 380, 323, 304, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 95, 76, 19 });
-        AddNumbers(frame_one, new[] { 361, 304, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 95, 38 });
-        AddNumbers(frame_one, new[] { 342, 285, 266, 247, 228, 209, 190, 171, 152, 133, 114, 57 });
-        AddNumbers(frame_one, new[] { 323, 266, 247, 228, 209, 190, 171, 152, 133, 76 });
-        AddNumbers(frame_one, new[] { 304, 247, 228, 209, 190, 171, 152, 95 });
-        AddNumbers(frame_one, new[] { 285, 228, 209, 190, 171, 114 });
-        AddNumbers(frame_one, new[] { 266, 209, 190, 133 });
-        AddNumbers(frame_one, new[] { 247, 152 });
-        AddNumbers(frame_one, new[] { 228, 171 });
+        obstacles = new List<List<List<Vector2>>>();
+        List<List<Vector2>> frame_one = new List<List<Vector2>>();
+        AddNumbers(frame_one, new[] { new Vector2(0, 0), new Vector2(20, 20) });
+        AddNumbers(frame_one, new[] { new Vector2(1, 1), new Vector2(19, 19) });
+        AddNumbers(frame_one, new[] { new Vector2(2, 2), new Vector2(18, 18) });
+        AddNumbers(frame_one, new[] { new Vector2(3, 3), new Vector2(17, 17) });
+        AddNumbers(frame_one, new[] { new Vector2(4, 4), new Vector2(16, 16) });
+        AddNumbers(frame_one, new[] { new Vector2(5, 5), new Vector2(15, 15) });
+        AddNumbers(frame_one, new[] { new Vector2(6, 6), new Vector2(14, 14) });
+        AddNumbers(frame_one, new[] { new Vector2(7, 7), new Vector2(13, 13) });
+        AddNumbers(frame_one, new[] { new Vector2(8, 8), new Vector2(12, 12) });
+        AddNumbers(frame_one, new[] { new Vector2(9, 9), new Vector2(11, 11) });
+        //one central
+        AddNumbers(frame_one, new[] { new Vector2(9, 9), new Vector2(11, 11) });
+        AddNumbers(frame_one, new[] { new Vector2(8, 8), new Vector2(12, 12) });
+        AddNumbers(frame_one, new[] { new Vector2(7, 7), new Vector2(13, 13) });
+        AddNumbers(frame_one, new[] { new Vector2(6, 6), new Vector2(14, 14),
+            new Vector2(10, 10)});
+        AddNumbers(frame_one, new[] { new Vector2(5, 5), new Vector2(15, 15),
+            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9)});
+        AddNumbers(frame_one, new[] { new Vector2(4, 4), new Vector2(16, 16),
+            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8)});
+        AddNumbers(frame_one, new[] { new Vector2(3, 3), new Vector2(17, 17),
+            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8), new Vector2(13, 13), new Vector2(7, 7) });
+        //two lateral
+        //not full screen distance
+        AddNumbers(frame_one, new[] { new Vector2(3, 3), new Vector2(17, 17),
+            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8), new Vector2(13, 13), new Vector2(7, 7) });
+        AddNumbers(frame_one, new[] { new Vector2(4, 4), new Vector2(16, 16),
+            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8)});
+        AddNumbers(frame_one, new[] { new Vector2(5, 5), new Vector2(15, 15),
+            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9)});
+        AddNumbers(frame_one, new[] { new Vector2(6, 6), new Vector2(14, 14),
+            new Vector2(10, 10)});
+        AddNumbers(frame_one, new[] { new Vector2(7, 7), new Vector2(13, 13) });
+        AddNumbers(frame_one, new[] { new Vector2(8, 8), new Vector2(12, 12) });
+        AddNumbers(frame_one, new[] { new Vector2(9, 9), new Vector2(11, 11) });
+        //one central
+
+
         obstacles.Add(frame_one);
 
-        Debug.Log(map(0, 0, 19, -30, 30));
-        Debug.Log(map(19, 0, 19, -30, 30));
-        Debug.Log(map(9, 0, 19, -30, 30));
+        Debug.Log(map(0, 0, 20, -30, 30));
+        Debug.Log(map(18, 0, 20, -30, 30));
+        Debug.Log(map(9, 0, 20, -30, 30));
+        Debug.Log(map(10, 0, 20, -30, 30));
 
 
         //Inizializzo il riferimento
@@ -156,20 +169,21 @@ public class GameManager : MonoBehaviour {
 
         //imposto il livello in base a quello raggiunto
         level_to_start = PlayerPrefs.GetInt("level", 1);
-	}
+    }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
 
-	}
-
-
-
+    }
 
 
 
 
-    
+
+
+
+
 
     public void StartLevel()
     {
@@ -226,9 +240,11 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private GameObject GetPoolElement(List <GameObject> list, int index_for_instantiation){
+    private GameObject GetPoolElement(List<GameObject> list, int index_for_instantiation)
+    {
         //cerco un oggetto inattivo
-        foreach (var item in list){
+        foreach (var item in list)
+        {
             switch (index_for_instantiation)
             {
                 case 0:
@@ -299,7 +315,7 @@ public class GameManager : MonoBehaviour {
                 foreach (var item in frame)
                 {
                     GameObject go = GetPoolElement(asteroids, 0);
-                    //go.transform.position = new Vector3(item%)
+                    go.transform.position = new Vector3(map(item.x, 0, 20, -30, 30), 10, map(item.y, 0, 20, -30, 30));
                 }
                 yield return new WaitForSeconds(1);
             }

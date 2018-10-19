@@ -4389,8 +4389,8 @@ MonoBehaviour:
   cameras: []
   camera_delimiter: {fileID: 1218810719}
   can_move: 0
-  player_to_rotate_z: {fileID: 1761716175}
-  player_to_rotate_y: {fileID: 1761716175}
+  player_to_rotate_z: {fileID: 299040082}
+  player_to_rotate_y: {fileID: 299040082}
   post_process_volume: {fileID: 11400000, guid: 007f4e32845469b4b8c298a42bcae55c,
     type: 2}
   i: 3
