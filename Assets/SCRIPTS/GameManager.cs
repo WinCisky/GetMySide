@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
     //camera principale
     public Camera mainCamera;
 
+    //level creator: popola i livelli
+    public LevelCreator LC;
+
     //oggetti per le pool
     //father e' per tenere gli oggetti ordinati
     public GameObject
@@ -96,54 +99,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
 
-        //Testing
-        obstacles = new List<List<List<Vector2>>>();
-        List<List<Vector2>> frame_one = new List<List<Vector2>>();
-        AddNumbers(frame_one, new[] { new Vector2(0, 0), new Vector2(20, 20) });
-        AddNumbers(frame_one, new[] { new Vector2(1, 1), new Vector2(19, 19) });
-        AddNumbers(frame_one, new[] { new Vector2(2, 2), new Vector2(18, 18) });
-        AddNumbers(frame_one, new[] { new Vector2(3, 3), new Vector2(17, 17) });
-        AddNumbers(frame_one, new[] { new Vector2(4, 4), new Vector2(16, 16) });
-        AddNumbers(frame_one, new[] { new Vector2(5, 5), new Vector2(15, 15) });
-        AddNumbers(frame_one, new[] { new Vector2(6, 6), new Vector2(14, 14) });
-        AddNumbers(frame_one, new[] { new Vector2(7, 7), new Vector2(13, 13) });
-        AddNumbers(frame_one, new[] { new Vector2(8, 8), new Vector2(12, 12) });
-        AddNumbers(frame_one, new[] { new Vector2(9, 9), new Vector2(11, 11) });
-        //one central
-        AddNumbers(frame_one, new[] { new Vector2(9, 9), new Vector2(11, 11) });
-        AddNumbers(frame_one, new[] { new Vector2(8, 8), new Vector2(12, 12) });
-        AddNumbers(frame_one, new[] { new Vector2(7, 7), new Vector2(13, 13) });
-        AddNumbers(frame_one, new[] { new Vector2(6, 6), new Vector2(14, 14),
-            new Vector2(10, 10)});
-        AddNumbers(frame_one, new[] { new Vector2(5, 5), new Vector2(15, 15),
-            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9)});
-        AddNumbers(frame_one, new[] { new Vector2(4, 4), new Vector2(16, 16),
-            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8)});
-        AddNumbers(frame_one, new[] { new Vector2(3, 3), new Vector2(17, 17),
-            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8), new Vector2(13, 13), new Vector2(7, 7) });
-        //two lateral
-        //not full screen distance
-        AddNumbers(frame_one, new[] { new Vector2(3, 3), new Vector2(17, 17),
-            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8), new Vector2(13, 13), new Vector2(7, 7) });
-        AddNumbers(frame_one, new[] { new Vector2(4, 4), new Vector2(16, 16),
-            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8)});
-        AddNumbers(frame_one, new[] { new Vector2(5, 5), new Vector2(15, 15),
-            new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9)});
-        AddNumbers(frame_one, new[] { new Vector2(6, 6), new Vector2(14, 14),
-            new Vector2(10, 10)});
-        AddNumbers(frame_one, new[] { new Vector2(7, 7), new Vector2(13, 13) });
-        AddNumbers(frame_one, new[] { new Vector2(8, 8), new Vector2(12, 12) });
-        AddNumbers(frame_one, new[] { new Vector2(9, 9), new Vector2(11, 11) });
-        //one central
-
-
-        obstacles.Add(frame_one);
-
-        Debug.Log(map(0, 0, 20, -30, 30));
-        Debug.Log(map(18, 0, 20, -30, 30));
-        Debug.Log(map(9, 0, 20, -30, 30));
-        Debug.Log(map(10, 0, 20, -30, 30));
-
+        //crea i vari livelli
+        obstacles = LC.CreateLevel(obstacles);
 
         //Inizializzo il riferimento
         GM = this;

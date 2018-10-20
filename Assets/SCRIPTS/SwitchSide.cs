@@ -273,16 +273,21 @@ public class SwitchSide : MonoBehaviour
             }
         }
     }
-    /*
-    //modifico la posizione delle videocamere virtuali in modo da avere una miglio transizione quando cambio dimensione
     private void FixedUpdate()
     {
+        //modifico la posizione delle videocamere virtuali in modo da avere una miglio transizione quando cambio dimensione
+        /*
         cameras[0].transform.position = new Vector3(transform.position.x, 6, -45 + transform.position.z);
         cameras[1].transform.position = new Vector3(45 + transform.position.x, 6, transform.position.z);
         cameras[2].transform.position = new Vector3(transform.position.x, 6, 45 + transform.position.z);
         cameras[3].transform.position = new Vector3(-45 + transform.position.x, 6, transform.position.z);
+        */
+        //mi muovo in diagonale
+        if (i % 2 == 0)
+            transform.position = new Vector3(transform.position.z, transform.position.y, transform.position.z);
+        else
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.x);
     }
-    */
 
     IEnumerator Rotate()
     {
@@ -323,7 +328,8 @@ public class SwitchSide : MonoBehaviour
 
         i = (i + 1) % rotations.Length;
 
-        cameras[i].SetActive(false); switch (i)
+        cameras[i].SetActive(false);
+        switch (i)
         {
             case 3:
                 cameras[0].transform.position = Vector3.zero;
@@ -386,7 +392,7 @@ public class SwitchSide : MonoBehaviour
 
 
         //rendo invincibile l'astronave
-        StartCoroutine(invincibility(3));
+        //StartCoroutine(invincibility(3));
 
         //normal speed
         Time.timeScale = 1;
