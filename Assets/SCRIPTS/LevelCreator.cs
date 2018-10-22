@@ -58,14 +58,18 @@ public class LevelCreator : MonoBehaviour
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
                 break;
             case 2:
-                //0.0 1.1 2.2 3.3 4.4 5.5 6.6 7.7 8.8
-                //20.0 19.1 18.2 17.3 16.4 15.5 14.6 13.7 12.8
-                AddNumbers(result, new[] {
-                    new Vector2(0, 0), new Vector2(1, 1), new Vector2(2, 2), new Vector2(3, 3), new Vector2(4, 4), new Vector2(5, 5),
-                    new Vector2(6, 6), new Vector2(7, 7), new Vector2(8, 8),
-
-                    new Vector2(13, 13), new Vector2(14, 14), new Vector2(15, 15),
-                    new Vector2(16, 16), new Vector2(17, 17), new Vector2(18, 18), new Vector2(19, 19), new Vector2(20, 20)});
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(12, 12) });
+                AddNumbers(result, new[] { new Vector2(10, 10), new Vector2(12, 12) });
+                AddNumbers(result, new[] { new Vector2(10, 10), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(8, 8), new Vector2(9, 9) });
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(9, 10), new Vector2(10, 9), new Vector2(11, 11) });
                 break;
             default:
                 break;
@@ -76,8 +80,9 @@ public class LevelCreator : MonoBehaviour
     public List<List<List<Vector2>>> CreateLevel(List<List<List<Vector2>>> list)
     {
         list = new List<List<List<Vector2>>>();
-        list.Add(AddSector(0));
-        list.Add(AddSector(1));
+        //list.Add(AddSector(0));
+        //list.Add(AddSector(1));
+        list.Add(AddSector(2));
 
         return list;
     }
