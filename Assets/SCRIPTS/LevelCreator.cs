@@ -20,6 +20,7 @@ public class LevelCreator : MonoBehaviour
         switch (index)
         {
             case 0:
+                //imbuto che porta al centro
                 AddNumbers(result, new[] { new Vector2(0, 0), new Vector2(20, 20) });
                 AddNumbers(result, new[] { new Vector2(1, 1), new Vector2(19, 19) });
                 AddNumbers(result, new[] { new Vector2(2, 2), new Vector2(18, 18) });
@@ -32,6 +33,7 @@ public class LevelCreator : MonoBehaviour
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
                 break;
             case 1:
+                //due strade <>
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
                 AddNumbers(result, new[] { new Vector2(8, 8), new Vector2(12, 12) });
                 AddNumbers(result, new[] { new Vector2(7, 7), new Vector2(13, 13) });
@@ -43,8 +45,6 @@ public class LevelCreator : MonoBehaviour
             new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8)});
                 AddNumbers(result, new[] { new Vector2(3, 3), new Vector2(17, 17),
             new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8), new Vector2(13, 13), new Vector2(7, 7) });
-                //two lateral
-                //not full screen distance
                 AddNumbers(result, new[] { new Vector2(3, 3), new Vector2(17, 17),
             new Vector2(10, 10), new Vector2(11, 11), new Vector2(9, 9), new Vector2(12, 12), new Vector2(8, 8), new Vector2(13, 13), new Vector2(7, 7) });
                 AddNumbers(result, new[] { new Vector2(4, 4), new Vector2(16, 16),
@@ -58,18 +58,48 @@ public class LevelCreator : MonoBehaviour
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
                 break;
             case 2:
+                //zig zag e cambio dim.
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(12, 12) });
                 AddNumbers(result, new[] { new Vector2(10, 10), new Vector2(12, 12) });
-                AddNumbers(result, new[] { new Vector2(10, 10), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(12, 12) });
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
-                AddNumbers(result, new[] { new Vector2(8, 8), new Vector2(9, 9) });
+                AddNumbers(result, new[] { new Vector2(8, 8), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(8, 8), new Vector2(10, 10) });
+                AddNumbers(result, new[] { new Vector2(8, 8), new Vector2(11, 11) });
                 AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
-                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(11, 11) });
-                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(9, 10), new Vector2(10, 9), new Vector2(11, 11) });
+                AddNumbers(result, new[] { new Vector2(9, 9), new Vector2(10, 9), new Vector2(10, 11), new Vector2(11, 11) });
+                break;
+            case 3:
+                //bordi ed oggetti sparsi
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15),
+                new Vector2(6,6), new Vector2(6,7), new Vector2(7,6), new Vector2(7,7),
+                new Vector2(9,9), new Vector2(9,10), new Vector2(10,9), new Vector2(10,10),
+                new Vector2(12,12), new Vector2(13,12), new Vector2(12,13), new Vector2(13,13)});
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15),
+                new Vector2(6,6), new Vector2(6,7), new Vector2(7,6), new Vector2(7,7),
+                new Vector2(9,9), new Vector2(9,10), new Vector2(10,9), new Vector2(10,10),
+                new Vector2(12,12), new Vector2(13,12), new Vector2(12,13), new Vector2(13,13)});
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15),
+                new Vector2(7,7), new Vector2(8,7), new Vector2(7,8), new Vector2(8,8),
+                new Vector2(10,10), new Vector2(11,10), new Vector2(10,11), new Vector2(11,11),
+                new Vector2(13,13), new Vector2(14,13), new Vector2(13,14), new Vector2(14,14)});
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15),
+                new Vector2(7,7), new Vector2(8,7), new Vector2(7,8), new Vector2(8,8),
+                new Vector2(10,10), new Vector2(11,10), new Vector2(10,11), new Vector2(11,11),
+                new Vector2(13,13), new Vector2(14,13), new Vector2(13,14), new Vector2(14,14)});
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
                 break;
             default:
                 break;
@@ -82,7 +112,7 @@ public class LevelCreator : MonoBehaviour
         list = new List<List<List<Vector2>>>();
         //list.Add(AddSector(0));
         //list.Add(AddSector(1));
-        list.Add(AddSector(2));
+        list.Add(AddSector(3));
 
         return list;
     }
