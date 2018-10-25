@@ -155,6 +155,34 @@ public class LevelCreator : MonoBehaviour
                 AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
                 AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15) });
                 break;
+            case 7:
+                //bordi ed oggetti sparsi
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15) });
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15) });
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15) });
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15),
+                new Vector2(14,6), new Vector2(14,7), new Vector2(13,6), new Vector2(13,7),
+                new Vector2(11,9), new Vector2(11,10), new Vector2(10,9), new Vector2(10,10),
+                new Vector2(8,12), new Vector2(7,12), new Vector2(8,13), new Vector2(7,13)});
+                AddNumbers(result, new[] { new Vector2(5, 5), new Vector2(15, 15),
+                new Vector2(14,6), new Vector2(14,7), new Vector2(13,6), new Vector2(13,7),
+                new Vector2(11,9), new Vector2(11,10), new Vector2(10,9), new Vector2(10,10),
+                new Vector2(8,12), new Vector2(7,12), new Vector2(8,13), new Vector2(7,13)});
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15) });
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15) });
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15) });
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15),
+                new Vector2(13,7), new Vector2(12,7), new Vector2(13,8), new Vector2(12,8),
+                new Vector2(10,10), new Vector2(9,10), new Vector2(10,11), new Vector2(9,11),
+                new Vector2(7,13), new Vector2(6,13), new Vector2(7,14), new Vector2(6,14)});
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15),
+                new Vector2(13,7), new Vector2(12,7), new Vector2(13,8), new Vector2(12,8),
+                new Vector2(10,10), new Vector2(9,10), new Vector2(10,11), new Vector2(9,11),
+                new Vector2(7,13), new Vector2(6,13), new Vector2(7,14), new Vector2(6,14)});
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15) });
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15) });
+                AddNumbers(result, new[] { new Vector2(15, 5), new Vector2(5, 15) });
+                break;
             default:
                 break;
         }

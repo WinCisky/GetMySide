@@ -274,7 +274,10 @@ public class GameManager : MonoBehaviour
                     GameObject go = GetPoolElement(asteroids, 0);
                     go.transform.position = new Vector3(map(item.x, 0, 20, -30, 30), 10, map(item.y, 0, 20, -30, 30));
                 }
-                yield return new WaitForSeconds(1);
+                //tempo corrente
+                float now = Time.fixedTime + 1;
+                //voglio aspettare un secondo esatto
+                yield return new WaitUntil(() => Time.fixedTime < now);
             }
         }
     }
