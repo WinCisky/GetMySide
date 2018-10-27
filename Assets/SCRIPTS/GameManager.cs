@@ -277,7 +277,7 @@ public class GameManager : MonoBehaviour
                 //tempo corrente
                 float now = Time.fixedTime + 1;
                 //voglio aspettare un secondo esatto
-                yield return new WaitUntil(() => Time.fixedTime < now);
+                yield return new WaitUntil(() => Time.fixedTime > now);
             }
         }
     }
